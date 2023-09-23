@@ -1,0 +1,19 @@
+body{
+    text-align: center;
+}
+
+#lights-panel {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.light {
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    margin: 0 1px;
+    border: 1px solid black;
+}
+
+
