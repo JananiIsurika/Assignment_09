@@ -1,46 +1,50 @@
-var curenrt_Light=0;
-var current_direction="RIGHT";
-var light_count=6;
+var style={background: "white"}
+var style2={background: "red"}
+var style_1={background: "#FF6666"}
 
-const updateLightPanel = () => {
-    var current_light = 0;
-    var current_direction = "RIGHT"; // RIGHT of LEFT
-    var light_count = 6;
-    var intervalID = 0;
+let current=0;
+let direction="right"
+let count=10;
+let interval=null;
 
+function lights(){
+    $('.light').eq(current).css(style2);
+    $('.light').eq(current+1).css(style_1);
+    $('.light').eq(current-1).css(style_1);
+}
 
-    const updateLightPanel = () => {
-        $(".light").css("background", "white");
-        $(".light").eq(current_light++).css("background", "red");
-
-        if (current_direction === "RIGHT") {
-            $(".light").eq((current_light++)).css("background", "#D80032");
-            if (current_light - 1>=0) {
-                $(".light").eq(current_light - 1).css("background", "#FF6969");
-            }
-            if(current_light === light_count - 1){
-                current_direction="LEFT";
-            }
-        } else {
-            current_light--;
-            $(".light").eq(current_light).css("background", "#F6635C");
-            $(".light").eq(current_light + 1).css("background", "red");
-
-            if (current_light === 0) {
-                current_direction = " RIGHT";
-            }
+const myFuction =()=> {
+    $(".light").css(style);
+    if(direction==="right"){
+        current++;
+        lights();
+        if(current===count>=0) {
+            lights()
+        }
+        if (current===count-1){
+            direction="left";
+        }
+    }else{
+        current--;
+        lights();
+        if(current===1) {
+            $('.blb').eq(current).css(style2);
+        }
+        if(current===0){
+            direction="right"
         }
     }
+}
 
-$("button:first-child").on("click", () => {
-    if (intervalID ==null){
-        intervalID=setInterval(updateLightPanel,100)
+$('button').eq(0).on('click',()=>{
+    if(interval===null){
+        interval=setInterval(myFuction,40);
+        $('#audio')[0].play();
     }
 });
 
-$("button:nth-child(2)").on("click",() => {
-    clearInterval(intervalID);
-    intervalID=null;
-    $("#audio")[0].pause();
+$('button').eq(1).on('click',()=>{
+    clearInterval(interval);
+    interval=null;
+    $('#audio')[0].pause();
 });
-}

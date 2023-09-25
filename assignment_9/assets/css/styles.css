@@ -1,19 +1,31 @@
-body{
-    text-align: center;
+#light-panel{
+    width: 1200px;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
 }
-
-#lights-panel {
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-}
-
-.light {
+#light-panel>div{
     width: 100px;
     height: 50px;
-    background-color: white;
-    margin: 0 1px;
-    border: 1px solid black;
+    background: white;
+    display: inline-block;
+    margin-left: 5px;
+    position:relative;
 }
-
-
+body{
+    background: black;
+}
+#btn{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 150px;
+    margin: auto;
+}
